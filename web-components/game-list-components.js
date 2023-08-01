@@ -20,6 +20,7 @@ class GameListComponent extends HTMLElement{ // definisce che questa classe sia 
 
 
        this.shadowRoot.innerHTML = '';
+     
        const mainContainer = document.createElement('div')
        this.shadowRoot.appendChild(mainContainer);
 
@@ -27,7 +28,9 @@ class GameListComponent extends HTMLElement{ // definisce che questa classe sia 
         const game = games[i];
 
         const cardComponent = document.createElement('game-card')
+        
         cardComponent.setAttribute('game-title', game.title)
+        cardComponent.setAttribute('game-author', game.author)
         
 
         mainContainer.appendChild(cardComponent);

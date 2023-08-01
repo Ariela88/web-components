@@ -15,9 +15,7 @@ class GameCardComponent extends HTMLElement{ // definisce che questa classe sia 
     render(){
 
         const title = this.getAttribute('game-title');
-
-        
-
+        const author = this.getAttribute('game-author')
         this.shadowRoot.innerHTML = '';
         const div = document.createElement('div');
         this.shadowRoot.appendChild(div)
@@ -25,6 +23,9 @@ class GameCardComponent extends HTMLElement{ // definisce che questa classe sia 
        const h3 = document.createElement('h3')
        h3.appendChild(document.createTextNode(title))
        div.appendChild(h3);
+       const h4 = document.createElement('h4')
+       h3.appendChild(document.createTextNode(author))
+       div.appendChild(h4);
 
 
        }
