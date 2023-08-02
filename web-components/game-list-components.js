@@ -4,33 +4,61 @@ class GameListComponent extends HTMLElement{ // definisce che questa classe sia 
         super();
     
        this.attachShadow({mode: 'open'}) //shadowroot gestisce quello che in js standard è il document 
+       this.gamesArray = []
     }
     
     connectedCallback(){
 
         fetch('./games-data.json')
         .then(resp => resp.json())
-        .then(res => this.render(res))
+        .then(res => {
+          this.gamesArray = res;
+        this.render(this.gamesArray);
+        })
     
-      this.render()
+    }
+
+    disconnectedCallback(){
+
     }
 
     render(games){
 
 
 
-       this.shadowRoot.innerHTML = '';
+      this.shadowRoot.innerHTML = `
+       <style> 
+       .main-container{
+        width:100%;
+         height: 80%;
+         display: flex;
+       
+         justify-content: space-around;
+         align-items: center;
+       }
+
+       game-card{
+        width: 300px;
+    }
+       </style> 
+       
+      `
      
        const mainContainer = document.createElement('div')
        this.shadowRoot.appendChild(mainContainer);
+       mainContainer.classList.add('main-container')
+       
+       
+      
 
        for (let i = 0; i < games.length; i++) {
         const game = games[i];
 
         const cardComponent = document.createElement('game-card')
         
-        cardComponent.setAttribute('game-title', game.title)
-        cardComponent.setAttribute('game-author', game.author)
+        cardComponent.game = game;
+        cardComponent.addEventListener('card-clicked',(e)=> this.removeGame(e.detail))
+
         
 
         mainContainer.appendChild(cardComponent);
@@ -40,6 +68,15 @@ class GameListComponent extends HTMLElement{ // definisce che questa classe sia 
        }
 
     }
+
+    removeGame(title){
+
+      this.gamesArray = this.gamesArray.filter(game => game.title !== title)
+
+      this.render(this.gamesArray)
+    
+    }
+    
     
     }
     

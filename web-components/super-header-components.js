@@ -6,6 +6,9 @@ constructor(){
    this.attachShadow({mode: 'open'}) //shadowroot gestisce quello che in js standard è il document 
 }
 
+
+
+
 connectedCallback(){
 
 this.render()
@@ -15,6 +18,21 @@ this.render()
 }
 
 render(){
+
+
+
+    this.shadowRoot.innerHTML = `
+    <style> 
+    h1{
+        text-align: center;
+        font-size: 60px;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        text-transform: capitalize;
+        color: blue;
+    }
+    </style> 
+    
+   `
 
     const style = document.createElement('style');
     style.innerHTML = `h1{color: ${this.getAttribute('title-color')}}`;
@@ -32,6 +50,18 @@ render(){
 
 }
 
+//queste due funzioni vanno sempre in coppia. uno osserva i cambiamenti degli attributi e l'altro li mette in pratica renderizzando la pagina
+attributeChangedCallback(name,oldValue,newValue){
+
+    if(oldValue !== newValue){
+        this.render()
+
+    }
+}
+
+static get observedAttributes(){
+    return ['title-color','super-title']
+}
 }
 
 customElements.define('super-header', SuperHeaderComponent); //definisce che questa classe venga associata all element creato da me

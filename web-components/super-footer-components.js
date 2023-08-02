@@ -17,7 +17,8 @@ class SuperFooterComponent extends HTMLElement{ // definisce che questa classe s
 
         this.shadowRoot.innerHTML = `
         <style> 
-        @import url('./web-components/super-footer-style.css');
+        
+        
         </style> 
         
         <p> ©Copyright Plattform 2023  </p>`

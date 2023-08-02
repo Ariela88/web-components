@@ -1,0 +1,30 @@
+body{
+    box-sizing: border-box;
+    width: 100vw;
+    height: 100vh;
+
+   
+    background-color:rgb(46, 46, 46)
+}
+
+
+
+super-header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+    height: 30%;
+    padding: 0;
+}
+super-footer{
+    height: 20%;
+    background-color: grey;
+}
+
+.spacer{
+
+    flex: 1;
+   
+}
